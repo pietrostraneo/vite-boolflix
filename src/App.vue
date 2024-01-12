@@ -17,14 +17,20 @@ export default {
 
     getMovies() {
 
-      let movieSearch = store.movieApi
+      let movieSearch = store.movieApi;
+      let seriesSearch = store.seriesApi
 
       if (store.search !== '') {
         movieSearch += `&query=${store.search}`
+        seriesSearch += `&query=${store.search}`
       }
 
       axios.get(movieSearch).then((response) => {
         this.store.movies = response.data.results
+      })
+
+      axios.get(seriesSearch).then((response) => {
+        this.store.series = response.data.results
       })
 
     }
