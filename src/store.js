@@ -5,5 +5,6 @@ export const store = reactive({
     seriesApi: 'https://api.themoviedb.org/3/search/tv?api_key=adb96d3e5fd020382172fe00aba18a4b&language=it-IT',
     search: '',
     movies: [],
-    series: []
+    series: [],
+    posterPath: 'https://image.tmdb.org/t/p/w342'
 })
