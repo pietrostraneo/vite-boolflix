@@ -15,7 +15,7 @@ export default {
   },
   methods: {
 
-    getMovies() {
+    getMovies(vote) {
 
       let movieSearch = store.movieApi;
       let seriesSearch = store.seriesApi

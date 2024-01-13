@@ -26,6 +26,11 @@ export default {
         getPoster(path) {
             let imgPath = store.posterPath + path
             return imgPath
+        },
+
+        getReview(vote) {
+            let reviews = vote.toFixed() / 2
+            return reviews
         }
     },
 }
@@ -44,7 +49,13 @@ export default {
                             <h3> {{ film.title }} </h3>
                             <p> {{ film.original_title }} </p>
                             <span :class="getFlag(film.original_language)"></span>
-                            <p> {{ film.vote_average }} </p>
+                            <div>
+                                <i class="fas fa-star" :class="getReview(film.vote_average) >= 1 ? 'reviewed' : ''"></i>
+                                <i class="fas fa-star" :class="getReview(film.vote_average) >= 2 ? 'reviewed' : ''"></i>
+                                <i class="fas fa-star" :class="getReview(film.vote_average) >= 3 ? 'reviewed' : ''"></i>
+                                <i class="fas fa-star" :class="getReview(film.vote_average) >= 4 ? 'reviewed' : ''"></i>
+                                <i class="fas fa-star" :class="getReview(film.vote_average) == 5 ? 'reviewed' : ''"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -61,7 +72,13 @@ export default {
                             <h3> {{ show.name }} </h3>
                             <p> {{ show.first_air_date }} </p>
                             <span :class="getFlag(show.original_language)"></span>
-                            <p> {{ show.vote_average }} </p>
+                            <div>
+                                <i class="fas fa-star" :class="getReview(show.vote_average) >= 1 ? 'reviewed' : ''"></i>
+                                <i class="fas fa-star" :class="getReview(show.vote_average) >= 2 ? 'reviewed' : ''"></i>
+                                <i class="fas fa-star" :class="getReview(show.vote_average) >= 3 ? 'reviewed' : ''"></i>
+                                <i class="fas fa-star" :class="getReview(show.vote_average) >= 4 ? 'reviewed' : ''"></i>
+                                <i class="fas fa-star" :class="getReview(show.vote_average) == 5 ? 'reviewed' : ''"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,5 +103,18 @@ main {
 .movielist {
     max-width: 1320px;
     overflow-x: scroll;
+    transition: all ease-in 0.3s;
+
+    .col-3:hover {
+        transform: rotateY(180deg);
+    }
+
+    .fa-star {
+        color: white;
+    }
+
+    .reviewed {
+        color: gold;
+    }
 }
 </style>
