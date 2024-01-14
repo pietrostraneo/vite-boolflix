@@ -4,8 +4,34 @@ export default {
     name: 'AppMovies',
     data() {
         return {
-            store
+            store,
+            slider: [
+                {
+                    image: "public/slider5.jpg",
+                    name: 'Toy Story 3'
+                },
+                {
+                    image: "public/slider4.jpg",
+                    name: 'Lo Hobbit - La desolazione di Smaug'
+                },
+                {
+                    image: "public/slider3.jpg",
+                    name: 'Fury'
+                },
+                {
+                    image: "public/slider2.jpg",
+                    name: 'Mad Max - Fury road'
+                },
+                {
+                    image: "public/slider1.jpg",
+                    name: 'Il cavaliere Oscuro'
+                },
+            ],
+            activeImg: 0
         }
+    },
+    created() {
+        this.nextImg()
     },
     methods: {
         getFlag(flag) {
@@ -31,14 +57,29 @@ export default {
         getReview(vote) {
             let reviews = vote.toFixed() / 2
             return reviews
+        },
+
+        nextImg() {
+            setInterval(() => {
+                this.activeImg++
+                if (this.activeImg == this.slider.length) {
+                    this.activeImg = 0
+                }
+            }, 2000);
         }
     },
 }
 </script>
 <template lang="">
 
-    <section>
-        
+    <section id="slider">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <img :src="slider[activeImg].image" alt="" class="img-fluid fade-in">
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="popMovies">
@@ -109,5 +150,37 @@ export default {
 
 .movielist {
     @include moviesList
+}
+
+#slider {
+    img {
+        width: 100vw;
+        height: 1000px;
+    }
+}
+
+.fade-in {
+    -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 </style>
