@@ -34,7 +34,7 @@ export default {
                 <div class="col-12 text-center">
                     <h1>Who's watching Pierùflix?</h1>
                 </div>
-                <div class="col-3 mt-5 text-center" v-for="user, index in users" :key="index">
+                <div class="col-12 col-md-3 mt-5 text-center" v-for="user, index in users" :key="index">
                     <img :src="user.img" :alt="user.name" @click="store.user = true; store.selectedUser = user.img" class="img-fluid">
                     <h5 class="mt-3">{{user.name}}</h5>
                 </div>

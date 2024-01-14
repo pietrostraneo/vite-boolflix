@@ -13,6 +13,7 @@ export default {
             store.movies = []
             store.series = []
             store.search = ''
+            this.searching = false
         }
     },
 }
@@ -22,10 +23,10 @@ export default {
     <header>
         <div class="container">
             <div class="row">
-                <div class="col-12 d-flex justify-content-between align-items-center">
+                <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
                     <div class="d-flex gap-2 align-items-center">
                         <img src="../assets/logo.png" alt="logo" class="img-fluid" @click="resetFilters()">
-                        <ul class="list-unstyled d-flex gap-3 text-white">
+                        <ul class="list-unstyled d-md-flex gap-3 text-white d-none">
                             <li>Home</li>
                             <li>TV Series</li>
                             <li>Film</li>
@@ -43,6 +44,9 @@ export default {
                         <div class="d-flex align-items-center">
                             <img :src="store.selectedUser" alt="" class="img-fluid">
                             <i class="fas fa-caret-down"></i>
+                            <div class="my-dropdown">
+
+                            </div>
                         </div>
 
                     </div>

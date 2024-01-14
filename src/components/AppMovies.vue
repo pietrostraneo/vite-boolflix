@@ -154,8 +154,8 @@ export default {
 
 #slider {
     img {
-        width: 100vw;
-        height: 1000px;
+        width: 100%;
+        height: 800px;
     }
 }
 
