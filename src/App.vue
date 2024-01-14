@@ -1,17 +1,22 @@
 <script>
 import { store } from './store';
-import axios from 'axios'
+import axios from 'axios';
+import AppUser from './components/AppUser.vue';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 export default {
   components: {
     AppHeader,
-    AppMain
+    AppMain,
+    AppUser
   },
   data() {
     return {
       store
     }
+  },
+  created() {
+    this.mostPopular()
   },
   methods: {
 
@@ -33,16 +38,26 @@ export default {
         this.store.series = response.data.results
       })
 
-    }
+    },
 
+    mostPopular() {
+      axios.get(store.popmovieApi).then((response) => {
+        this.store.popmovie = response.data.results
+      })
+
+      axios.get(store.popseriesApi).then((response) => {
+        this.store.popseries = response.data.results
+      })
+    }
   },
 }
 </script>
 
 <template lang="">
   
-  <AppHeader @filterMovie="getMovies()" />
-  <AppMain />
+  <AppUser v-if="store.user == false" />
+  <AppHeader @filterMovie="getMovies()" v-if="store.user == true" />
+  <AppMain v-if="store.user == true" />
 
 </template>
 

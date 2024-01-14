@@ -1,22 +1,25 @@
 <script>
 import { store } from '../store';
+import AppMovies from './AppMovies.vue';
 import AppSearch from './AppSearch.vue'
 export default {
     name: 'AppMain',
     components: {
-        AppSearch
+        AppSearch,
+        AppMovies
     },
     data() {
         return {
             store,
         }
-    },
+    }
 }
 </script>
 
 <template lang="">
     <main>
         
+        <AppMovies v-if="store.movies.length == 0"/>
         <AppSearch />
 
     </main>
